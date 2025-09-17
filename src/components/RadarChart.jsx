@@ -1,4 +1,4 @@
-import React from "react";
+import "./RadarChart.css";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, Legend, ResponsiveContainer } from "recharts";
 
 const sampleData = [
@@ -12,17 +12,17 @@ const sampleData = [
 
 const RadarChartComponent = ({ data = sampleData }) => {
   return (
-    <div style={{ width: "100%", height: 300 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart outerRadius={90} width={730} height={250} data={data}>
-          <PolarGrid />
-          <PolarAngleAxis dataKey="subject" />
-          <PolarRadiusAxis angle={30} domain={[0, 150]} />
-          <Radar name="Mike" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-          <Radar name="Lily" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
-          <Legend />
-        </RadarChart>
-      </ResponsiveContainer>
+    <div className="radar-chart-container">
+      <div style={{ width: "100%", height: 300 }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <RadarChart outerRadius={90} width={730} height={250} data={data}>
+            <PolarGrid />
+            <PolarAngleAxis dataKey="subject" />
+            <PolarRadiusAxis angle={30} domain={[0, 150]} />
+            <Radar name="Mike" dataKey="A" stroke="#FF0101" fill="#FF0101" fillOpacity={0.7} />
+          </RadarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };

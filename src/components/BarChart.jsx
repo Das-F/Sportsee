@@ -66,8 +66,8 @@ const BarChartComponent = ({ data: propData }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="pv" fill="#8884D8" />
-          <Bar dataKey="Kcal" fill="#82CA9D" />
+          <Bar dataKey="Kg" fill="#282D30" />
+          <Bar dataKey="Kcal" fill="#E60000" />
         </BarChart>
       </ResponsiveContainer>
     </div>
