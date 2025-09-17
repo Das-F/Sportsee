@@ -6,6 +6,7 @@ import BarChartComponent from "./components/Barchart.jsx";
 import RadarChartComponent from "./components/Radarchart.jsx";
 import LineChartComponent from "./components/LineChart.jsx";
 import PieChartComponent from "./components/PieChart.jsx";
+import AlimentationBoard from "./components/AlimentationBoard.jsx";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -42,6 +43,7 @@ function App() {
       <LineChartComponent />
       <PieChartComponent />
       <RadarChartComponent />
+      <AlimentationBoard />
       <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
