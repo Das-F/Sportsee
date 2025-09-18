@@ -1,7 +1,7 @@
-function AlimentationSymbol({ title, value, unit, icon }) {
+function AlimentationSymbol({ title, value, unit, img }) {
   return (
     <div>
-      <img src={icon} alt={title} />
+      <img src={img} alt={title} />
       <p>
         {value} {unit}
       </p>
