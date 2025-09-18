@@ -21,7 +21,6 @@ function App() {
   }
   return (
     <>
-      <h1>Vite + React</h1>
       <div className="card">
         <button onClick={printUserActivity} style={{ marginLeft: 8 }}>
           Show user activity (console)
@@ -35,7 +34,6 @@ function App() {
       <PieChartComponent />
       <RadarChartComponent />
       <AlimentationBoard />
-      <p className="read-the-docs">Click on the Vite and React logos to learn more</p>
     </>
   );
 }
