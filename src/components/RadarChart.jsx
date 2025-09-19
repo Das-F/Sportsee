@@ -13,7 +13,7 @@ const sampleData = [
 const RadarChartComponent = ({ data = sampleData }) => {
   return (
     <div className="radar-chart-container">
-      <div style={{ width: "100%", height: 300 }}>
+      <div style={{ width: "100%", height: "100%" }}>
         <ResponsiveContainer width="100%" height="100%">
           <RadarChart outerRadius={90} width={730} height={250} data={data}>
             <PolarGrid />

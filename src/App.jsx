@@ -29,8 +29,8 @@ function App() {
       </div>
       <BarChartComponent />
       <LineChartComponent />
-      <PieChartComponent />
       <RadarChartComponent />
+      <PieChartComponent />
       <AlimentationBoard />
     </>
   );

@@ -1,29 +1,32 @@
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import "./LineChart.css";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 
 const sampleData = [
-  { name: "Page A", uv: 4000, pv: 2400 },
-  { name: "Page B", uv: 3000, pv: 1398 },
-  { name: "Page C", uv: 2000, pv: 9800 },
-  { name: "Page D", uv: 2780, pv: 3908 },
-  { name: "Page E", uv: 1890, pv: 4800 },
-  { name: "Page F", uv: 2390, pv: 3800 },
-  { name: "Page G", uv: 3490, pv: 4300 },
+  { name: "L", pv: 2400 },
+  { name: "M", pv: 1398 },
+  { name: "M", pv: 9800 },
+  { name: "J", pv: 3908 },
+  { name: "V", pv: 4800 },
+  { name: "S", pv: 3800 },
+  { name: "D", pv: 4300 },
 ];
 
 const LineChartComponent = ({ data }) => {
   const chartData = Array.isArray(data) && data.length ? data : sampleData;
 
   return (
-    <div style={{ width: "100%", height: 320 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart width={730} height={250} data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="pv" stroke="#8884d8" />
-        </LineChart>
-      </ResponsiveContainer>
+    <div className="line-chart-container">
+      <div style={{ width: "100%", height: "100%", backgroundColor: "#E60000" }}>
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={chartData}>
+            <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
+            <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} />
+            <YAxis hide={true} onClick={() => console.log("Clicked Y Axis")} />
+            <Tooltip />
+            <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
