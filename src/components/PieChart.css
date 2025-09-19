@@ -1,0 +1,18 @@
+.pie-chart-container {
+  width: 280px;
+  height: 280px;
+  border-radius: 8px;
+  background-color: #fbfbfb;
+  overflow: hidden;
+  padding: 5px;
+  margin: 10px;
+}
+
+.pie-chart-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #20253a;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  z-index: 1;
+}
