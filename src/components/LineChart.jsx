@@ -20,7 +20,7 @@ const LineChartComponent = ({ data }) => {
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
-            <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} />
+            <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
             <YAxis hide={true} onClick={() => console.log("Clicked Y Axis")} />
             <Tooltip />
             <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} dot={false} />
