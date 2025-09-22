@@ -10,17 +10,17 @@
   flex-direction: column;
   flex: 1;
   gap: 30px;
+  margin-left: 20px;
 }
 
 .line-radar-pie-container {
   display: flex;
-  justify-content: space-evenly;
-  gap: 20px;
+  gap: 15px;
   flex-direction: row;
+  margin: 0 10px;
 }
 
 .alimentation-graph {
   display: flex;
   justify-content: flex-end;
-  flex: 0 0 30%;
 }

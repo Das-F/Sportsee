@@ -68,7 +68,7 @@ const BarChartComponent = ({ data: propData }) => {
   const maxKg = Math.ceil(maxKgRaw) + 1;
 
   return (
-    <div className="bar-chart-container" style={{ width: "100%", height: 340 }}>
+    <div className="bar-chart-container" style={{ width: 935, height: 340 }}>
       <CustomLegend />
       <ResponsiveContainer width={800} height="95%">
         <BarChart data={chartData} margin={{ top: 15, right: 30, left: 20, bottom: 15 }}>
