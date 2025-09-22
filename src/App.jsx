@@ -27,11 +27,19 @@ function App() {
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <BarChartComponent />
-      <LineChartComponent />
-      <RadarChartComponent />
-      <PieChartComponent />
-      <AlimentationBoard />
+      <div className="graphs-container">
+        <div className="bar-container">
+          <BarChartComponent />
+        </div>
+        <div className="line-radar-pie-container">
+          <LineChartComponent />
+          <RadarChartComponent />
+          <PieChartComponent />
+        </div>
+        <div className="alimentation-graph">
+          <AlimentationBoard />
+        </div>
+      </div>
     </>
   );
 }
