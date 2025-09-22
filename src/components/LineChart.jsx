@@ -1,5 +1,5 @@
 import "./LineChart.css";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const sampleData = [
   { name: "L", pv: 2400 },
@@ -11,6 +11,12 @@ const sampleData = [
   { name: "D", pv: 4300 },
 ];
 
+const CustomLegend = () => (
+  <div style={{ color: "#fff", padding: "10px", fontSize: "15px", opacity: 0.5, textAlign: "left" }}>
+    Durée moyenne des <br /> sessions
+  </div>
+);
+
 const LineChartComponent = ({ data }) => {
   const chartData = Array.isArray(data) && data.length ? data : sampleData;
 
@@ -19,9 +25,10 @@ const LineChartComponent = ({ data }) => {
       <div style={{ width: "100%", height: "100%", backgroundColor: "#E60000" }}>
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
+            <Legend verticalAlign="top" align="left" content={<CustomLegend />} />
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
             <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
-            <YAxis hide={true} onClick={() => console.log("Clicked Y Axis")} />
+            <YAxis hide={true} />
             <Tooltip />
             <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} dot={false} />
           </LineChart>
