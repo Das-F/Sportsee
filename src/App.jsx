@@ -20,22 +20,22 @@ function App() {
   return (
     <>
       <div className="card">
-        <button onClick={printUserActivity} style={{ marginLeft: 8 }}>
-          Show user activity (console)
-        </button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
       <div className="graphs-container">
-        <div className="bar-container">
-          <BarChartComponent />
+        <div className="left-graphs">
+          <div className="bar-container">
+            <BarChartComponent />
+          </div>
+          <div className="line-radar-pie-container">
+            <LineChartComponent />
+            <RadarChartComponent />
+            <PieChartComponent />
+          </div>
         </div>
-        <div className="line-radar-pie-container">
-          <LineChartComponent />
-          <RadarChartComponent />
-          <PieChartComponent />
-        </div>
+
         <div className="alimentation-graph">
           <AlimentationBoard />
         </div>

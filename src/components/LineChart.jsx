@@ -12,10 +12,21 @@ const sampleData = [
 ];
 
 const CustomLegend = () => (
-  <div style={{ color: "#fff", padding: "10px", fontSize: "15px", opacity: 0.5, textAlign: "left" }}>
+  <div className="custom-legend-linechart">
     Durée moyenne des <br /> sessions
   </div>
 );
+
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="custom-tooltip-linechart">
+        <p>{`${payload[0].value} min`}</p>
+      </div>
+    );
+  }
+  return null;
+};
 
 const LineChartComponent = ({ data }) => {
   const chartData = Array.isArray(data) && data.length ? data : sampleData;
@@ -29,7 +40,7 @@ const LineChartComponent = ({ data }) => {
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
             <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
             <YAxis hide={true} />
-            <Tooltip />
+            <Tooltip content={<CustomTooltip />} cursor={false} />
             <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>

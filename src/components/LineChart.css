@@ -7,3 +7,15 @@
   padding: 5px;
   margin: 10px;
 }
+
+.custom-legend-linechart {
+  color: #fff;
+  padding: 10px;
+  font-size: 15px;
+  opacity: 0.5;
+  text-align: left;
+}
+
+.custom-tooltip-linechart {
+  background-color: rgb(255, 255, 255);
+}
