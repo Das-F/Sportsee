@@ -6,7 +6,7 @@ const color = "#FF0000";
 
 function PieChartComponent() {
   return (
-    <div className="pie-chart-container" style={{ width: 280, height: 280, position: "relative" }}>
+    <div className="pie-chart-container" style={{ width: 200, height: 200, position: "relative" }}>
       <h4
         style={{
           position: "absolute",
@@ -28,12 +28,12 @@ function PieChartComponent() {
           left: "50%",
           transform: "translate(-50%, -50%)",
           margin: 0,
-          fontSize: "1.5rem",
+          fontSize: "1rem",
           fontWeight: "normal",
           color: "#74798C",
           pointerEvents: "none",
           textAlign: "center",
-          maxWidth: "120px",
+          maxWidth: "75px",
         }}
       >
         de votre objectif
@@ -41,7 +41,7 @@ function PieChartComponent() {
 
       <ResponsiveContainer>
         <PieChart>
-          <Pie data={data} cx="50%" cy="50%" innerRadius={85} outerRadius={100} cornerRadius={10} fill={color} dataKey="value">
+          <Pie data={data} cx="50%" cy="50%" innerRadius={60} outerRadius={70} cornerRadius={8} fill={color} dataKey="value">
             {data.map((entry) => (
               <Cell key={`cell-${entry.name}`} fill={color} />
             ))}

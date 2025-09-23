@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import BarChartComponent from "./components/Barchart.jsx";
+import BarChartComponent from "./components/BarChart.jsx";
 import RadarChartComponent from "./components/Radarchart.jsx";
 import LineChartComponent from "./components/LineChart.jsx";
 import PieChartComponent from "./components/PieChart.jsx";

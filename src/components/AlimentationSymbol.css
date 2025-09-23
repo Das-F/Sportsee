@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 20px;
   flex-direction: row;
-  width: 260px;
-  height: 125px;
+  width: 175px;
+  height: 100px;
 }
 
 .alimentation-text {
