@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Bar from "./components/Bar.jsx";
 import BarChartComponent from "./components/BarChart.jsx";
 import RadarChartComponent from "./components/Radarchart.jsx";
 import LineChartComponent from "./components/LineChart.jsx";
@@ -20,9 +21,7 @@ function App() {
   return (
     <>
       <div className="card">
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        <Bar title="Accueil" />
       </div>
       <div className="graphs-container">
         <div className="left-graphs">
