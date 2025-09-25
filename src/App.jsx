@@ -20,8 +20,9 @@ function App() {
   }
   return (
     <>
-      <div className="card">
-        <Bar title="Accueil" />
+      <div className="personnal-space">
+        <Bar className="accueil" />
+        <Bar className="activities" />
       </div>
       <div className="graphs-container">
         <div className="left-graphs">
