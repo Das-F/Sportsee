@@ -7,7 +7,7 @@ const color = "#FF0000";
 function PieChartComponent() {
   return (
     <div className="pie-chart-container" style={{ width: 200, height: 200, position: "relative" }}>
-      <h4
+      <h2
         style={{
           position: "absolute",
           top: "20px",
@@ -19,7 +19,7 @@ function PieChartComponent() {
         }}
       >
         Score
-      </h4>
+      </h2>
 
       <h3
         style={{

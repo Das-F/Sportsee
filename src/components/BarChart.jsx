@@ -24,7 +24,7 @@ const CustomLegend = () => (
     }}
   >
     {/* Title */}
-    <h3 style={{ margin: 0, fontWeight: "bold", color: "#20253A" }}>Activité quotidienne</h3>
+    <h2 style={{ margin: 0, fontWeight: "bold", color: "#20253A" }}>Activité quotidienne</h2>
 
     {/* dots on right*/}
     <div style={{ display: "flex", gap: "20px", fontSize: "14px", color: "#74798C" }}>

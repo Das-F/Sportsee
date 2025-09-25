@@ -13,7 +13,9 @@ const sampleData = [
 
 const CustomLegend = () => (
   <div className="custom-legend-linechart">
-    Durée moyenne des <br /> sessions
+    <h2>
+      Durée moyenne des <br /> sessions
+    </h2>
   </div>
 );
 

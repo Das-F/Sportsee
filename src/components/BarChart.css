@@ -4,3 +4,10 @@
   background: #fbfbfb;
   border-radius: 8px;
 }
+
+h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: #20253a;
+  margin-bottom: 20px;
+}
