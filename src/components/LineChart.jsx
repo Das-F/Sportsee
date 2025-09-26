@@ -2,13 +2,13 @@ import "./LineChart.css";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const sampleData = [
-  { name: "L", pv: 2400 },
-  { name: "M", pv: 1398 },
-  { name: "M", pv: 9800 },
-  { name: "J", pv: 3908 },
-  { name: "V", pv: 4800 },
-  { name: "S", pv: 3800 },
-  { name: "D", pv: 4300 },
+  { name: "L", sessionLength: 30 },
+  { name: "M", sessionLength: 40 },
+  { name: "M", sessionLength: 50 },
+  { name: "J", sessionLength: 30 },
+  { name: "V", sessionLength: 30 },
+  { name: "S", sessionLength: 50 },
+  { name: "D", sessionLength: 50 },
 ];
 
 const CustomLegend = () => (
@@ -43,7 +43,7 @@ const LineChartComponent = ({ data }) => {
             <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
             <YAxis hide={true} />
             <Tooltip content={<CustomTooltip />} cursor={false} />
-            <Line type="monotone" dataKey="pv" stroke="#ffffff" strokeWidth={2} dot={false} />
+            <Line type="monotone" dataKey="sessionLength" stroke="#ffffff" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
