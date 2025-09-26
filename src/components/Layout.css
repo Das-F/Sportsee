@@ -1,7 +1,11 @@
 .layout-header {
   background-color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 70px;
+  z-index: 1000;
 }
 
 .layout-logo {
@@ -70,5 +74,7 @@
 .layout-sidebar-copyright {
   color: #ffffff;
   font-size: 12px;
-  bottom: 10px;
+  position: absolute;
+  left: 20px;
+  margin-left: 15px;
 }
