@@ -108,7 +108,7 @@ const BarChartComponent = ({ data: propData }) => {
     sessions = data[0].sessions;
   }
 
-  // formatter les jours pour l'axe X : '2020-07-01' -> '1'
+  // formatting days for X axis : '2020-07-01' -> '1'
   const chartData = sessions.map((s) => ({
     day: String(s.day).split("-").pop().replace(/^0/, ""),
     kilogram: s.kilogram,
@@ -121,6 +121,9 @@ const BarChartComponent = ({ data: propData }) => {
 
   const minKg = Math.floor(minKgRaw) - 1;
   const maxKg = Math.ceil(maxKgRaw) + 1;
+  // Ticks list for YAxis on right (kg)
+  const ticks = [];
+  for (let v = minKg; v <= maxKg; v++) ticks.push(v);
 
   return (
     <div className="bar-chart-container" style={{ width: 680, height: 340 }}>
@@ -130,7 +133,7 @@ const BarChartComponent = ({ data: propData }) => {
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="day" />
           <YAxis yAxisId="left" hide />
-          <YAxis yAxisId="right" orientation="right" tickLine={false} axisLine={false} domain={[minKg, maxKg]} tickCount={3} tickFormatter={(value) => `${value} kg`} />
+          <YAxis yAxisId="right" orientation="right" tickLine={false} axisLine={false} domain={[minKg, maxKg]} ticks={ticks} tickFormatter={(value) => `${value} kg`} />
           <Tooltip />
 
           <Bar dataKey="calories" fill="#E60000" barSize={8} radius={[10, 10, 0, 0]} yAxisId="left" />
