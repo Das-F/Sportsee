@@ -1,17 +1,31 @@
 import "./PieChart.css";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
-const data = [{ name: "Group A", value: 12 }];
+// Données locales (utilisateur courant)
+const userData = {
+  id: 18,
+  score: 0.3,
+};
+
 const color = "#FF0000";
+const gray = "#F5F5F5";
 
 function PieChartComponent() {
+  const rawScore = userData.score ?? userData.todayScore ?? 0;
+  const scorePercent = Math.round(rawScore * 100);
+
+  const pieData = [
+    { name: "score", value: scorePercent },
+    { name: "rest", value: 100 - scorePercent },
+  ];
+
   return (
     <div className="pie-chart-container" style={{ width: 200, height: 200, position: "relative" }}>
       <h2
         style={{
           position: "absolute",
-          top: "20px",
-          left: "20px",
+          top: "12px",
+          left: "12px",
           margin: 0,
           fontSize: "17px",
           fontWeight: "bold",
@@ -21,30 +35,26 @@ function PieChartComponent() {
         Score
       </h2>
 
-      <h3
+      <div
         style={{
           position: "absolute",
           top: "50%",
           left: "50%",
           transform: "translate(-50%, -50%)",
           margin: 0,
-          fontSize: "1rem",
-          fontWeight: "normal",
-          color: "#74798C",
           pointerEvents: "none",
           textAlign: "center",
-          maxWidth: "75px",
         }}
       >
-        de votre objectif
-      </h3>
+        <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#282D30" }}>{scorePercent}%</div>
+        <div style={{ fontSize: "0.9rem", color: "#74798C" }}>de votre objectif</div>
+      </div>
 
       <ResponsiveContainer>
         <PieChart>
-          <Pie data={data} cx="50%" cy="50%" innerRadius={60} outerRadius={70} cornerRadius={8} fill={color} dataKey="value">
-            {data.map((entry) => (
-              <Cell key={`cell-${entry.name}`} fill={color} />
-            ))}
+          <Pie data={pieData} cx="50%" cy="50%" startAngle={180} endAngle={-180} innerRadius={60} outerRadius={70} cornerRadius={8} dataKey="value">
+            <Cell key="cell-score" fill={color} />
+            <Cell key="cell-rest" fill={gray} />
           </Pie>
         </PieChart>
       </ResponsiveContainer>
