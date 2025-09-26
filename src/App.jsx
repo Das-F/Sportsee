@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./App.css";
-import Bar from "./components/Bar.jsx";
+import Layout from "./components/Layout.jsx";
 import BarChartComponent from "./components/BarChart.jsx";
 import RadarChartComponent from "./components/Radarchart.jsx";
 import LineChartComponent from "./components/LineChart.jsx";
@@ -21,8 +21,7 @@ function App() {
   return (
     <>
       <div className="personnal-space">
-        <Bar className="accueil" />
-        <Bar className="activities" />
+        <Layout />
       </div>
       <div className="graphs-container">
         <div className="left-graphs">
