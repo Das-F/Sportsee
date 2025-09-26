@@ -34,7 +34,7 @@
 .layout-sidebar {
   background-color: #000000;
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 0;
   transform: rotate(-90deg);
   transform-origin: top left;
