@@ -34,6 +34,7 @@
 .layout-sidebar {
   background-color: #000000;
   position: fixed;
+
   bottom: 0;
   left: 0;
   transform: rotate(-90deg);
@@ -43,4 +44,31 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.layout-sidebar {
+  display: flex;
+  flex-direction: row;
+}
+
+.layout-sidebar-icons {
+  transform: rotate(90deg);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  justify-content: center;
+}
+
+.layout-sidebar-icons img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  display: block;
+}
+
+.layout-sidebar-copyright {
+  color: #ffffff;
+  font-size: 12px;
+  bottom: 10px;
 }
