@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { GetUserName } from "../api/api.js";
 import "./App.css";
 import Layout from "./components/Layout.jsx";
 import BarChartComponent from "./components/BarChart.jsx";
@@ -32,14 +33,16 @@ function App() {
     const idFromQuery = getUserIdFromQuery();
     if (!idFromQuery) return;
 
-    fetch(`http://localhost:3000/user/${idFromQuery}`)
-      .then((res) => res.json())
-      .then((data) => {
-        // Défensive: vérifier le chemin attendu
-        const name = data && data.data && data.data.userInfos && data.data.userInfos.firstName;
-        if (name) setFirstName(name);
+    let mounted = true;
+    setFirstName(null);
+    GetUserName(idFromQuery)
+      .then((name) => {
+        if (mounted) setFirstName(name);
       })
-      .catch((err) => console.error("Erreur fetch user:", err));
+      .catch((err) => console.error("Erreur récupération prénom :", err));
+    return () => {
+      mounted = false;
+    };
   }, []);
 
   return (
