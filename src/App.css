@@ -28,7 +28,7 @@
 
 .line-radar-pie-container {
   display: flex;
-  gap: 10px;
+  gap: 5px;
   flex-direction: row;
   margin: 0 10px;
 }

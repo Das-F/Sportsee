@@ -20,21 +20,8 @@ function PieChartComponent() {
   ];
 
   return (
-    <div className="pie-chart-container" style={{ width: 200, height: 200, position: "relative" }}>
-      <h2
-        style={{
-          position: "absolute",
-          top: "12px",
-          left: "12px",
-          margin: 0,
-          fontSize: "17px",
-          fontWeight: "bold",
-          color: "#20253A",
-        }}
-      >
-        Score
-      </h2>
-
+    <div className="pie-chart-container">
+      <h2 className="pie-chart-title">Score</h2>
       <div
         style={{
           position: "absolute",
@@ -46,13 +33,13 @@ function PieChartComponent() {
           textAlign: "center",
         }}
       >
-        <div style={{ fontSize: "1.6rem", fontWeight: 700, color: "#282D30" }}>{scorePercent}%</div>
-        <div style={{ fontSize: "0.9rem", color: "#74798C" }}>de votre objectif</div>
+        <div className="pie-chart-score">%</div>
+        <div className="pie-chart-objective">de votre objectif</div>
       </div>
 
       <ResponsiveContainer>
         <PieChart>
-          <Pie data={pieData} cx="50%" cy="50%" startAngle={180} endAngle={-180} innerRadius={60} outerRadius={70} cornerRadius={8} dataKey="value">
+          <Pie data={pieData} cx="50%" cy="50%" startAngle={180} endAngle={-180} innerRadius={50} outerRadius={60} cornerRadius={8} dataKey="value">
             <Cell key="cell-score" fill={color} />
             <Cell key="cell-rest" fill={gray} />
           </Pie>

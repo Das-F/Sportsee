@@ -1,7 +1,7 @@
 .alimentation-board {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 12px;
   padding: 10px 0px;
 }
 

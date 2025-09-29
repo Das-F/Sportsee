@@ -1,4 +1,6 @@
 .bar-chart-container {
+  width: 620px;
+  height: 290px;
   padding: 5px;
   margin: 10px;
   background: #fbfbfb;

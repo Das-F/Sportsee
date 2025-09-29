@@ -126,9 +126,9 @@ const BarChartComponent = ({ data: propData }) => {
   for (let v = minKg; v <= maxKg; v++) ticks.push(v);
 
   return (
-    <div className="bar-chart-container" style={{ width: 680, height: 340 }}>
+    <div className="bar-chart-container">
       <CustomLegend />
-      <ResponsiveContainer width={680} height="95%">
+      <ResponsiveContainer width={620} height="90%">
         <BarChart data={chartData} margin={{ top: 15, right: 30, left: 20, bottom: 15 }}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="day" />

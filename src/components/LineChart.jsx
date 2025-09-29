@@ -35,7 +35,7 @@ const LineChartComponent = ({ data }) => {
 
   return (
     <div className="line-chart-container">
-      <div style={{ width: "100%", height: "100%", backgroundColor: "#E60000" }}>
+      <div className="line-chart-responsive-container">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData}>
             <Legend verticalAlign="top" align="left" content={<CustomLegend />} />

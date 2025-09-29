@@ -1,18 +1,32 @@
 .pie-chart-container {
-  width: 200px;
-  height: 200px;
+  position: relative;
+  width: 180px;
+  height: 180px;
   border-radius: 8px;
   background-color: #fbfbfb;
   overflow: hidden;
   padding: 3px;
-  margin: 6px;
+  margin: 0px 10px;
 }
 
 .pie-chart-container h2 {
-  font-size: 8px;
-  font-weight: 500;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  font-size: 15px;
+  font-weight: bold;
   color: #20253a;
-  margin-bottom: 8px;
-  margin-left: 8px;
-  z-index: 1;
+  margin: 0;
+}
+
+.pie-chart-score {
+  font-size: 18px;
+  font-weight: 600;
+  color: #282d30;
+}
+
+.pie-chart-objective {
+  font-size: 14px;
+  font-weight: 400;
+  color: #74798c;
 }
