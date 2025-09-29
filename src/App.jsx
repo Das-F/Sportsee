@@ -6,6 +6,7 @@ import RadarChartComponent from "./components/Radarchart.jsx";
 import LineChartComponent from "./components/LineChart.jsx";
 import PieChartComponent from "./components/PieChart.jsx";
 import AlimentationBoard from "./components/AlimentationBoard.jsx";
+import Message from "./components/Message.jsx";
 
 function App() {
   // Afficher les infos de l'utilisateur 12 dans la console http://localhost:3000/user/12/activity
@@ -19,6 +20,7 @@ function App() {
     <>
       <div className="personnal-space">
         <Layout />
+        <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id="Diane" />
       </div>
       <div className="graphs-container">
         <div className="left-graphs">

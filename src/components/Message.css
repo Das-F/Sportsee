@@ -1,0 +1,27 @@
+.message-container {
+  align-items: flex-start;
+  justify-content: center;
+  text-align: flex-start;
+  margin: 40px 20px;
+}
+
+.message-title {
+  font-weight: 500;
+  font-size: 44px;
+  color: #000;
+  margin: 10px;
+}
+
+.id-text {
+  font-weight: 500;
+  font-size: 44px;
+  color: #ff0101;
+  margin: 10px;
+}
+
+.message-text {
+  font-weight: 400;
+  font-size: 16px;
+  color: #000;
+  margin: 20px 10px;
+}
