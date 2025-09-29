@@ -57,18 +57,15 @@
 }
 
 .layout-sidebar-icons {
-  transform: rotate(90deg);
+  transform: rotate(90deg) translateY(120px);
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  align-items: center;
-  justify-content: center;
+  gap: 10px;
 }
 
 .layout-sidebar-icons img {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
+  width: 42px;
+  height: 42px;
   display: block;
 }
 
