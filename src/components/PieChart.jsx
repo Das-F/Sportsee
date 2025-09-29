@@ -1,7 +1,6 @@
 import "./PieChart.css";
 import { Cell, Pie, PieChart, ResponsiveContainer } from "recharts";
 
-// Données locales (utilisateur courant)
 const userData = {
   id: 18,
   score: 0.3,
@@ -33,7 +32,7 @@ function PieChartComponent() {
           textAlign: "center",
         }}
       >
-        <div className="pie-chart-score">%</div>
+        <div className="pie-chart-score">{scorePercent}%</div>
         <div className="pie-chart-objective">de votre objectif</div>
       </div>
 
