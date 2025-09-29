@@ -6,7 +6,9 @@ function Layout() {
       <div className="layout-header">
         <img className="layout-logo" src="/assets/Logo.svg" alt="Sportsee logo" />
         <div className="layout-nav">
-          <h2>Accueil</h2>
+          <h2>
+            <a href="/pages/homepage.html">Accueil</a>
+          </h2>
           <h2>Profil</h2>
           <h2>Réglage</h2>
           <h2>Communauté</h2>
