@@ -50,6 +50,6 @@ export async function GetUserScore(id) {
 export async function GetUserNutrition(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
-  console.log("Nutrition:", data);
+
   return data;
 }
