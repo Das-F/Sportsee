@@ -35,6 +35,11 @@
   padding: 0;
 }
 
+.layout-nav-link {
+  color: #ffffff;
+  text-decoration: none;
+}
+
 .layout-sidebar {
   background-color: #000000;
   position: fixed;
