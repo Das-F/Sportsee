@@ -45,42 +45,15 @@ const data = [
 ];
 
 const CustomLegend = () => (
-  <div
-    style={{
-      display: "flex",
-      justifyContent: "space-between",
-      alignItems: "center",
-      margin: "0 20px 20px 20px",
-    }}
-  >
-    {/* Title */}
-    <h2 style={{ margin: 0, fontWeight: "bold", color: "#20253A" }}>Activité quotidienne</h2>
-
-    {/* dots on right*/}
-    <div style={{ display: "flex", gap: "20px", fontSize: "14px", color: "#74798C" }}>
-      <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-        <span
-          style={{
-            display: "inline-block",
-            width: "8px",
-            height: "8px",
-            borderRadius: "50%",
-            backgroundColor: "#282D30",
-          }}
-        ></span>
+  <div className="bar-chart-legend">
+    <h2 className="bar-chart-title">Activité quotidienne</h2>
+    <div className="bar-chart-dots">
+      <span className="bar-chart-legend-title">
+        <span className="bar-chart-legend-dot"></span>
         Poids (kg)
       </span>
-
       <span style={{ display: "flex", alignItems: "center", gap: "5px" }}>
-        <span
-          style={{
-            display: "inline-block",
-            width: "8px",
-            height: "8px",
-            borderRadius: "50%",
-            backgroundColor: "#E60000",
-          }}
-        ></span>
+        <span className="bar-chart-legend-dot-red"></span>
         Calories brûlées (kCal)
       </span>
     </div>

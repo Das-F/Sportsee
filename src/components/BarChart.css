@@ -13,3 +13,45 @@ h2 {
   color: #20253a;
   margin-bottom: 20px;
 }
+
+.bar-chart-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 20px 20px 20px;
+}
+
+.bar-chart-title {
+  margin: 0;
+  font-weight: bold;
+  color: #20253a;
+}
+
+.bar-chart-dots {
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  color: #74798c;
+}
+
+.bar-chart-legend-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.bar-chart-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #282d30;
+}
+
+.bar-chart-legend-dot-red {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #e60000;
+}
