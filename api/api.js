@@ -2,6 +2,7 @@
 export async function GetUserId(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -9,6 +10,7 @@ export async function GetUserId(id) {
 export async function GetUserName(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
+  console.log(data);
   return data?.data?.userInfos?.firstName ?? null;
 }
 
@@ -16,6 +18,7 @@ export async function GetUserName(id) {
 export async function GetUserActivity(id) {
   const response = await fetch(`http://localhost:3000/user/${id}/activity`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -23,6 +26,7 @@ export async function GetUserActivity(id) {
 export async function GetUserAverageSessions(id) {
   const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -30,6 +34,7 @@ export async function GetUserAverageSessions(id) {
 export async function GetUserPerformance(id) {
   const response = await fetch(`http://localhost:3000/user/${id}/performance`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -37,6 +42,7 @@ export async function GetUserPerformance(id) {
 export async function GetUserScore(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
 
@@ -44,5 +50,6 @@ export async function GetUserScore(id) {
 export async function GetUserNutrition(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
+  console.log(data);
   return data;
 }
