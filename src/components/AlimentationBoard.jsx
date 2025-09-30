@@ -1,39 +1,29 @@
 import "./AlimentationBoard.css";
 import AlimentationSymbol from "./AlimentationSymbol";
+import { useEffect, useState } from "react";
+import { GetUserNutritionFormatted } from "../../api/api";
 
-const data = {
-  id: 18,
-  userInfos: {
-    firstName: "Cecilia",
-    lastName: "Ratorez",
-    age: 34,
-  },
-  score: 0.3,
-  keyData: {
-    calorieCount: 2500,
-    proteinCount: 90,
-    carbohydrateCount: 150,
-    lipidCount: 120,
-  },
-};
+function AlimentationBoard({ userId }) {
+  const [nutrition, setNutrition] = useState([]);
 
-function AlimentationBoard() {
-  const keyData = data.keyData || {};
+  useEffect(() => {
+    GetUserNutritionFormatted(userId)
+      .then((formatted) => {
+        console.log("Données formatées:", formatted);
+        setNutrition(formatted);
+      })
+      .catch((err) => console.error("Erreur nutrition:", err));
+  }, [userId]);
+
+  if (!nutrition.length) return <p>Chargement...</p>;
 
   return (
     <div className="alimentation-board">
-      <div className="alimentation-symbol-card">
-        <AlimentationSymbol img="/assets/AlimentationBoard-icons/Calories-icon.svg" value={keyData.calorieCount} unit="kcal" title="Calories" />
-      </div>
-      <div className="alimentation-symbol-card">
-        <AlimentationSymbol img="/assets/AlimentationBoard-icons/Proteines-icon.svg" value={keyData.proteinCount} unit="g" title="Protéines" />
-      </div>
-      <div className="alimentation-symbol-card">
-        <AlimentationSymbol img="/assets/AlimentationBoard-icons/Glucides-icon.svg" value={keyData.carbohydrateCount} unit="g" title="Glucides" />
-      </div>
-      <div className="alimentation-symbol-card">
-        <AlimentationSymbol img="/assets/AlimentationBoard-icons/Lipides-icon.svg" value={keyData.lipidCount} unit="g" title="Lipides" />
-      </div>
+      {nutrition.map((item, index) => (
+        <div className="alimentation-symbol-card" key={index}>
+          <AlimentationSymbol img={item.img} value={item.value} unit={item.unit} title={item.type} />
+        </div>
+      ))}
     </div>
   );
 }

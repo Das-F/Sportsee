@@ -12,7 +12,7 @@ export async function GetUserName(id) {
   const data = await response.json();
   return data?.data?.userInfos?.firstName ?? null;
 }
-GetUserName(id).then((name) => console.log("Prénom:", name));
+GetUserName(12).then((name) => console.log("Prénom:", name));
 
 // Get User Activity function for BarChart
 export async function GetUserActivity(id) {
@@ -53,3 +53,15 @@ export async function GetUserNutrition(id) {
   return data;
 }
 GetUserNutrition(12).then((data) => console.log("Nutrition:", data));
+
+export async function GetUserNutritionFormatted(id) {
+  const response = await fetch(`http://localhost:3000/user/${id}`);
+  const data = await response.json();
+  const keyData = data?.data?.keyData ?? {};
+  return [
+    { type: "Calories", value: keyData.calorieCount ?? 0, unit: "kCal" },
+    { type: "Proteines", value: keyData.proteinCount ?? 0, unit: "g" },
+    { type: "Glucides", value: keyData.carbohydrateCount ?? 0, unit: "g" },
+    { type: "Lipides", value: keyData.lipidCount ?? 0, unit: "g" },
+  ];
+}
