@@ -28,14 +28,14 @@ function App() {
   };
 
   const [firstName, setFirstName] = useState(null);
+  const userId = getUserIdFromQuery();
 
   useEffect(() => {
-    const idFromQuery = getUserIdFromQuery();
-    if (!idFromQuery) return;
+    if (!userId) return;
 
     let mounted = true;
     setFirstName(null);
-    GetUserName(idFromQuery)
+    GetUserName(userId)
       .then((name) => {
         if (mounted) setFirstName(name);
       })
@@ -43,13 +43,13 @@ function App() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [userId]);
 
   return (
     <>
       <div className="personnal-space">
         <Layout />
-        <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={getUserIdFromQuery() || ""} firstName={firstName} />
+        <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={userId || ""} firstName={firstName} />
       </div>
       <div className="graphs-container">
         <div className="left-graphs">
@@ -64,7 +64,7 @@ function App() {
         </div>
 
         <div className="alimentation-graph">
-          <AlimentationBoard />
+          <AlimentationBoard userId={userId} />
         </div>
       </div>
     </>
