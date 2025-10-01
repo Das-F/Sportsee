@@ -1,3 +1,4 @@
+import "../pages/Dashboard.css";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GetUserName } from "../api/api.js";
@@ -31,25 +32,27 @@ function Dashboard() {
 
   return (
     <>
-      <div className="personnal-space">
-        <Layout />
-        <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={id} firstName={firstName} />
-      </div>
-
-      <div className="graphs-container">
-        <div className="left-graphs">
-          <div className="bar-container">
-            <BarChartComponent />
-          </div>
-          <div className="line-radar-pie-container">
-            <LineChartComponent />
-            <RadarChartComponent />
-            <PieChartComponent />
-          </div>
+      <div className="dashboard">
+        <div className="personnal-space">
+          <Layout />
+          <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={id} firstName={firstName} />
         </div>
 
-        <div className="alimentation-graph">
-          <AlimentationBoard userId={id} />
+        <div className="graphs-container">
+          <div className="left-graphs">
+            <div className="bar-container">
+              <BarChartComponent />
+            </div>
+            <div className="line-radar-pie-container">
+              <LineChartComponent />
+              <RadarChartComponent />
+              <PieChartComponent />
+            </div>
+          </div>
+
+          <div className="alimentation-graph">
+            <AlimentationBoard userId={id} />
+          </div>
         </div>
       </div>
     </>
