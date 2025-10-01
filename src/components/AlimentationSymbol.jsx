@@ -5,7 +5,7 @@ function AlimentationSymbol({ title, value, unit, img }) {
   return (
     <div className="alimentation-card">
       <div className="alimentation-icon">
-        <img src={img || defaultImg} alt={title ? `${title} icon` : "nutrition icon"} />
+        <img className="alimentation-icon-img" src={img || defaultImg} alt={title ? `${title} icon` : "nutrition icon"} />
       </div>
       <div className="alimentation-text">
         <p>
