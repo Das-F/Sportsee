@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": 20,
+    "userInfos": {
+      "firstName": "Julie",
+      "lastName": "Durand",
+      "age": 35
+    },
+    "todayScore": 0.25,
+    "keyData": {
+      "calorieCount": 2030,
+      "proteinCount": 185,
+      "carbohydrateCount": 250,
+      "lipidCount": 80
+    }
+  }
+}
