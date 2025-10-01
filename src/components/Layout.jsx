@@ -1,4 +1,5 @@
 import "./Layout.css";
+import { Link } from "react-router-dom";
 
 function Layout() {
   return (
@@ -7,9 +8,9 @@ function Layout() {
         <img className="layout-logo" src="/assets/Logo.svg" alt="Sportsee logo" />
         <div className="layout-nav">
           <h2>
-            <a className="layout-nav-link" href="/pages/homepage.html">
+            <Link className="layout-nav-link" to="/">
               Accueil
-            </a>
+            </Link>
           </h2>
           <h2>Profil</h2>
           <h2>Réglage</h2>
