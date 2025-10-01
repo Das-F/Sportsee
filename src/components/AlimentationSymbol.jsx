@@ -1,10 +1,11 @@
 import "./AlimentationSymbol.css";
 
 function AlimentationSymbol({ title, value, unit, img }) {
+  const defaultImg = "/assets/AlimentationBoard-icons/Calories-icon.svg";
   return (
     <div className="alimentation-card">
       <div className="alimentation-icon">
-        <img src={img} alt={title} />
+        <img src={img || defaultImg} alt={title ? `${title} icon` : "nutrition icon"} />
       </div>
       <div className="alimentation-text">
         <p>

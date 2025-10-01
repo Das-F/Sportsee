@@ -27,11 +27,18 @@ function AlimentationBoard({ userId }) {
 
   if (!nutrition.length) return <p>Chargement...</p>;
 
+  const ICONS = {
+    Calories: "/assets/AlimentationBoard-icons/Calories-icon.svg",
+    Proteines: "/assets/AlimentationBoard-icons/Proteines-icon.svg",
+    Glucides: "/assets/AlimentationBoard-icons/Glucides-icon.svg",
+    Lipides: "/assets/AlimentationBoard-icons/Lipides-icon.svg",
+  };
+
   return (
     <div className="alimentation-board">
       {nutrition.map((item, index) => (
         <div className="alimentation-symbol-card" key={index}>
-          <AlimentationSymbol value={item.value} unit={item.unit} title={item.type} />
+          <AlimentationSymbol value={item.value} unit={item.unit} title={item.type} img={ICONS[item.type] || "/assets/AlimentationBoard-icons/Calories-icon.svg"} />
         </div>
       ))}
     </div>
