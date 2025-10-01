@@ -1,7 +1,7 @@
 .pie-chart-container {
   position: relative;
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   border-radius: 8px;
   background-color: #fbfbfb;
   overflow: hidden;

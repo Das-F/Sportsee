@@ -101,7 +101,7 @@ const BarChartComponent = ({ data: propData }) => {
   return (
     <div className="bar-chart-container">
       <CustomLegend />
-      <ResponsiveContainer width={620} height="90%">
+      <ResponsiveContainer width={680} height="90%">
         <BarChart data={chartData} margin={{ top: 15, right: 30, left: 20, bottom: 15 }}>
           <CartesianGrid vertical={false} strokeDasharray="3 3" />
           <XAxis dataKey="day" />

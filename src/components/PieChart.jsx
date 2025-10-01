@@ -33,7 +33,10 @@ function PieChartComponent() {
         }}
       >
         <div className="pie-chart-score">{scorePercent}%</div>
-        <div className="pie-chart-objective">de votre objectif</div>
+        <div className="pie-chart-objective">
+          de votre <br />
+          objectif
+        </div>
       </div>
 
       <ResponsiveContainer>
