@@ -28,7 +28,27 @@ export async function GetUserAverageSessions(id) {
   const data = await response.json();
   return data;
 }
-GetUserAverageSessions(12).then((data) => console.log("Sessions Moyennes:", data));
+
+// Get User Average Sessions formatted for LineChart
+export async function GetUserAverageSessionsFormatted(id) {
+  const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
+  const data = await response.json();
+  // API may return { data: { sessions: [...] } } or { data: [...] }
+  const payload = data?.data ?? data;
+  const rawSessions = payload?.sessions ?? payload ?? [];
+
+  const dayMap = [null, "L", "M", "M", "J", "V", "S", "D"];
+
+  const chartData = Array.isArray(rawSessions)
+    ? rawSessions.map((s) => {
+        const dayIdx = s.day ?? s.weekday ?? s.dayOfWeek ?? 0;
+        const name = dayMap[dayIdx] ?? (s.dayLabel || String(dayIdx));
+        return { name, sessionLength: s.sessionLength ?? s.length ?? s.value ?? 0 };
+      })
+    : [];
+
+  return chartData;
+}
 
 // Get User Performance function for RadarChart
 export async function GetUserPerformance(id) {
@@ -36,7 +56,6 @@ export async function GetUserPerformance(id) {
   const data = await response.json();
   return data;
 }
-GetUserPerformance(12).then((data) => console.log("Performance:", data));
 
 // Get User Performance formatted for RadarChart
 export async function GetUserPerformanceFormatted(id) {

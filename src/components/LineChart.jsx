@@ -1,5 +1,7 @@
 import "./LineChart.css";
+import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { GetUserAverageSessionsFormatted } from "../../api/api";
 
 const sampleData = [
   { name: "L", sessionLength: 30 },
@@ -30,8 +32,36 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
-const LineChartComponent = ({ data }) => {
-  const chartData = Array.isArray(data) && data.length ? data : sampleData;
+const LineChartComponent = ({ data, userId }) => {
+  const [chartData, setChartData] = useState(Array.isArray(data) && data.length ? data : sampleData);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+    if (Array.isArray(data) && data.length) {
+      setChartData(data);
+      return;
+    }
+    if (!userId) return;
+    setLoading(true);
+    GetUserAverageSessionsFormatted(userId)
+      .then((d) => {
+        if (!mounted) return;
+        setChartData(Array.isArray(d) && d.length ? d : sampleData);
+      })
+      .catch((err) => {
+        console.error("LineChart: erreur GetUserAverageSessionsFormatted:", err);
+        setChartData(sampleData);
+      })
+      .finally(() => setLoading(false));
+
+    return () => {
+      mounted = false;
+    };
+  }, [data, userId]);
+
+  if (!userId && (!data || !data.length)) return <p>Utilisateur non spécifié</p>;
+  if (loading) return <p>Chargement...</p>;
 
   return (
     <div className="line-chart-container">
