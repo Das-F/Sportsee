@@ -1,11 +1,3 @@
-// Get ID function
-export async function GetUserId(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
-  console.log(data);
-  return data;
-}
-
 // Get Name function for title
 export async function GetUserName(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
