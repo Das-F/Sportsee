@@ -1,48 +1,8 @@
 import "./BarChart.css";
+import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-const data = [
-  {
-    userId: 18,
-    sessions: [
-      {
-        day: "2020-07-01",
-        kilogram: 70,
-        calories: 240,
-      },
-      {
-        day: "2020-07-02",
-        kilogram: 69,
-        calories: 220,
-      },
-      {
-        day: "2020-07-03",
-        kilogram: 70,
-        calories: 280,
-      },
-      {
-        day: "2020-07-04",
-        kilogram: 70,
-        calories: 500,
-      },
-      {
-        day: "2020-07-05",
-        kilogram: 69,
-        calories: 160,
-      },
-      {
-        day: "2020-07-06",
-        kilogram: 69,
-        calories: 162,
-      },
-      {
-        day: "2020-07-07",
-        kilogram: 69,
-        calories: 390,
-      },
-    ],
-  },
-];
+// NOTE: remove local static data - component uses only API or passed prop data
 
 const CustomLegend = () => (
   <div className="bar-chart-legend">
@@ -60,29 +20,55 @@ const CustomLegend = () => (
   </div>
 );
 
-const BarChartComponent = ({ data: propData }) => {
-  // Normaliser la source de données pour récupérer un tableau de sessions
-  let sessions = [];
-  if (propData) {
-    if (Array.isArray(propData)) {
-      // propData peut être un tableau de sessions ou un tableau d'utilisateurs
-      if (propData.length && propData[0] && propData[0].day) {
-        sessions = propData;
-      } else if (propData.length && propData[0] && propData[0].sessions) {
-        sessions = propData[0].sessions;
-      }
-    } else if (propData.sessions) {
-      sessions = propData.sessions;
-    }
-  }
+const BarChartComponent = ({ data: propData, userId }) => {
+  const [sessions, setSessions] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  // fallback vers les données locales définies au-dessus
-  if (!sessions.length && Array.isArray(data) && data[0] && data[0].sessions) {
-    sessions = data[0].sessions;
-  }
+  useEffect(() => {
+    let mounted = true;
+    // If propData provided, normalize locally
+    if (propData) {
+      if (Array.isArray(propData)) {
+        if (propData.length && propData[0] && propData[0].day) setSessions(propData);
+        else if (propData.length && propData[0] && propData[0].sessions) setSessions(propData[0].sessions);
+      } else if (propData.sessions) setSessions(propData.sessions);
+      return;
+    }
+
+    if (!userId) return;
+    setLoading(true);
+    // Lazy import API to avoid circular deps at module load
+    import("../../api/api").then(({ GetUserActivityFormatted }) => {
+      GetUserActivityFormatted(userId)
+        .then((res) => {
+          if (!mounted) return;
+          // res may be { userId, sessions } or an array
+          if (Array.isArray(res)) setSessions(res);
+          else if (res && Array.isArray(res.sessions)) setSessions(res.sessions);
+          else setSessions([]);
+        })
+        .catch((err) => {
+          console.error("BarChart: erreur GetUserActivityFormatted:", err);
+          setSessions([]);
+        })
+        .finally(() => {
+          if (mounted) setLoading(false);
+        });
+    });
+
+    return () => {
+      mounted = false;
+    };
+  }, [propData, userId]);
+
+  if (!userId && (!propData || !propData.length)) return <p>Utilisateur non spécifié</p>;
+  if (loading) return <p>Chargement...</p>;
+
+  // No local fallback: prefer API result (sessions) or propData; otherwise show message
+  const usedSessions = sessions.length ? sessions : [];
 
   // formatting days for X axis : '2020-07-01' -> '1'
-  const chartData = sessions.map((s) => ({
+  const chartData = usedSessions.map((s) => ({
     day: String(s.day).split("-").pop().replace(/^0/, ""),
     kilogram: s.kilogram,
     calories: s.calories,

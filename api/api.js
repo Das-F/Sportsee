@@ -12,7 +12,6 @@ export async function GetUserName(id) {
   const data = await response.json();
   return data?.data?.userInfos?.firstName ?? null;
 }
-GetUserName(12).then((name) => console.log("Prénom:", name));
 
 // Get User Activity function for BarChart
 export async function GetUserActivity(id) {
@@ -20,7 +19,26 @@ export async function GetUserActivity(id) {
   const data = await response.json();
   return data;
 }
-GetUserActivity(12).then((data) => console.log("Activité:", data));
+
+// Get User Activity formatted for BarChart
+export async function GetUserActivityFormatted(id) {
+  const response = await fetch(`http://localhost:3000/user/${id}/activity`);
+  const data = await response.json();
+  // Possible shapes: { data: { sessions: [...] } } or { data: [...] } or { sessions: [...] }
+  const payload = data?.data ?? data;
+  const sessions = payload?.sessions ?? payload ?? [];
+
+  // Ensure sessions is an array of { day, kilogram, calories }
+  const normalized = Array.isArray(sessions)
+    ? sessions.map((s) => ({
+        day: s.day ?? s.date ?? s.label ?? "",
+        kilogram: s.kilogram ?? s.weight ?? s.kg ?? null,
+        calories: s.calories ?? s.calorie ?? s.kcal ?? null,
+      }))
+    : [];
+
+  return { userId: payload?.userId ?? payload?.id ?? id, sessions: normalized };
+}
 
 // Get User Average Sessions function for LineChart
 export async function GetUserAverageSessions(id) {
