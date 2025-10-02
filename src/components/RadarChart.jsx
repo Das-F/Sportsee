@@ -1,35 +1,42 @@
 import "./RadarChart.css";
+import { useEffect, useState } from "react";
 import { RadarChart, PolarGrid, PolarAngleAxis, PolarRadiusAxis, Radar, ResponsiveContainer } from "recharts";
+import { GetUserPerformanceFormatted } from "../../api/api";
 
-const localData = {
-  userId: 18,
-  kind: {
-    1: "cardio",
-    2: "energy",
-    3: "endurance",
-    4: "strength",
-    5: "speed",
-    6: "intensity",
-  },
-  data: [
-    { value: 200, kind: 1 },
-    { value: 240, kind: 2 },
-    { value: 80, kind: 3 },
-    { value: 80, kind: 4 },
-    { value: 220, kind: 5 },
-    { value: 110, kind: 6 },
-  ],
-};
+const RadarChartComponent = ({ data: propData, userId }) => {
+  const [chartData, setChartData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-const RadarChartComponent = ({ data: propData }) => {
-  const src = propData ?? localData;
+  useEffect(() => {
+    let mounted = true;
+    if (propData) {
+      // propData expected either as already formatted { kind: {...}, data: [...] } or as an array
+      if (Array.isArray(propData)) setChartData(propData);
+      else if (propData.kind && Array.isArray(propData.data)) setChartData(propData.data.map((d) => ({ kind: propData.kind[d.kind] ?? d.kind, value: d.value })));
+      return;
+    }
 
-  let chartData = [];
-  if (src && src.kind && Array.isArray(src.data)) {
-    chartData = src.data.map((d) => ({ kind: src.kind[d.kind], value: d.value }));
-  } else if (Array.isArray(src)) {
-    chartData = src;
-  }
+    if (!userId) return;
+    setLoading(true);
+    GetUserPerformanceFormatted(userId)
+      .then((res) => {
+        if (!mounted) return;
+        const data = res?.data ?? [];
+        setChartData(Array.isArray(data) ? data : []);
+      })
+      .catch((err) => {
+        console.error("RadarChart: erreur GetUserPerformanceFormatted:", err);
+        setChartData([]);
+      })
+      .finally(() => setLoading(false));
+
+    return () => {
+      mounted = false;
+    };
+  }, [propData, userId]);
+
+  if (!userId && !propData) return <p>Utilisateur non spécifié</p>;
+  if (loading) return <p>Chargement...</p>;
 
   const maxValue = chartData.length ? Math.max(...chartData.map((d) => d.value)) : 0;
 

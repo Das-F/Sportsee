@@ -38,6 +38,22 @@ export async function GetUserPerformance(id) {
 }
 GetUserPerformance(12).then((data) => console.log("Performance:", data));
 
+// Get User Performance formatted for RadarChart
+export async function GetUserPerformanceFormatted(id) {
+  const response = await fetch(`http://localhost:3000/user/${id}/performance`);
+  const data = await response.json();
+  // API shape may be:
+  // { data: { userId: 18, kind: {1: 'cardio', ...}, data: [{value: 200, kind:1}, ...] } }
+  const payload = data?.data ?? data;
+  const kindMap = payload?.kind ?? {};
+  const rawData = payload?.data ?? [];
+
+  // Map to [{ kind: 'cardio', value: 200 }, ...]
+  const chartData = Array.isArray(rawData) ? rawData.map((d) => ({ kind: kindMap?.[d.kind] ?? d.kind, value: d.value })) : [];
+
+  return { userId: payload?.userId, kind: kindMap, data: chartData };
+}
+
 // Get User Score function for PieChart
 export async function GetUserScore(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
