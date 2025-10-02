@@ -18,15 +18,16 @@
 
 .graphs-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start; /* pas de space-between */
   align-items: flex-start;
-  gap: 4px;
+  gap: 20px;
+  width: fit-content; /* <-- prend juste la place de ses enfants */
+  margin: 0 auto;
 }
 
 .left-graphs {
   display: flex;
   flex-direction: column;
-  flex: 1;
   gap: 10px;
   margin-left: 20px;
 }
@@ -40,5 +41,10 @@
 
 .alimentation-graph {
   display: flex;
-  justify-content: flex-end;
+  width: auto;
+  flex-shrink: 0;
+}
+
+.bar-container {
+  width: 680px;
 }

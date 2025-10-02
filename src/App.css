@@ -32,8 +32,3 @@
   flex-direction: row;
   margin: 0 10px;
 }
-
-.alimentation-graph {
-  display: flex;
-  justify-content: flex-end;
-}

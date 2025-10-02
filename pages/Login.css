@@ -50,6 +50,7 @@ body {
   border-radius: 6px;
   border: 2px solid #ddd;
   background-color: #ffffff;
+  color: black;
 }
 .field button {
   margin-top: 12px;
