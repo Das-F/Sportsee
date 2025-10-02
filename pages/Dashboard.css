@@ -18,10 +18,10 @@
 
 .graphs-container {
   display: flex;
-  justify-content: flex-start; /* pas de space-between */
+  justify-content: flex-start;
   align-items: flex-start;
   gap: 20px;
-  width: fit-content; /* <-- prend juste la place de ses enfants */
+  width: fit-content;
   margin: 0 auto;
 }
 
