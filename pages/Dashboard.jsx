@@ -41,12 +41,12 @@ function Dashboard() {
         <div className="graphs-container">
           <div className="left-graphs">
             <div className="bar-container">
-              <BarChartComponent />
+              <BarChartComponent userId={id} />
             </div>
             <div className="line-radar-pie-container">
-              <LineChartComponent />
-              <RadarChartComponent />
-              <PieChartComponent />
+              <LineChartComponent userId={id} />
+              <RadarChartComponent userId={id} />
+              <PieChartComponent userId={id} />
             </div>
           </div>
 

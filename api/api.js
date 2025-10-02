@@ -44,7 +44,15 @@ export async function GetUserScore(id) {
   const data = await response.json();
   return data;
 }
-GetUserScore(12).then((data) => console.log("Score:", data));
+
+export async function GetUserScoreFormatted(id) {
+  const response = await fetch(`http://localhost:3000/user/${id}`);
+  const data = await response.json();
+  console.log("Données complètes de l'API :", data);
+  const score = data?.data?.score ?? data?.data?.todayScore ?? 0;
+  console.log("Score extrait :", score);
+  return score;
+}
 
 // Get User Nutrition function for AlimentationBoard
 export async function GetUserNutrition(id) {
@@ -52,7 +60,6 @@ export async function GetUserNutrition(id) {
   const data = await response.json();
   return data;
 }
-GetUserNutrition(12).then((data) => console.log("Nutrition:", data));
 
 export async function GetUserNutritionFormatted(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
