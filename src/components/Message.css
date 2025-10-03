@@ -1,8 +1,7 @@
 .message-container {
   align-items: flex-start;
   justify-content: center;
-  text-align: flex-start;
-  margin: 10px 20px;
+  margin-left: clamp(20px, calc(((100vw - 1024px) / 416) * 200), 200px);
 }
 
 .message-title {

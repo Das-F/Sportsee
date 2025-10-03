@@ -1,47 +1,8 @@
-// Toggle pour utiliser des mocks stockés dans public/mocks
-const USE_MOCK = import.meta.env.VITE_USE_MOCK === "true";
-
-// Trace rapide pour debug runtime (visible dans la console du navigateur)
-if (typeof window !== "undefined") {
-  if (USE_MOCK) console.info("[api] VITE_USE_MOCK = true -> using local mock files");
-  else console.info("[api] VITE_USE_MOCK = false -> using real backend API");
-}
-
-async function fetchMock(id, type) {
-  // type: 'user' | 'activity' | 'averageSessions' | 'performance'
-  const map = {
-    user: `${id}-user-information.json`,
-    activity: `${id}-user-activity.json`,
-    averageSessions: `${id}-user-average-session.json`,
-    performance: `${id}-user-performance.json`,
-  };
-  const filename = map[type];
-  if (!filename) return null;
-
-  const candidatePaths = [`/mocks/${filename}`, `/assets/mocks/${filename}`];
-  let lastError = null;
-  for (const p of candidatePaths) {
-    try {
-      const res = await fetch(p);
-      if (res.ok) {
-        const json = await res.json();
-        if (typeof window !== "undefined") console.debug(`[api] fetchMock fetched ${p}`, json);
-        return json;
-      }
-      lastError = new Error(`Mock not found (status ${res.status}): ${p}`);
-    } catch (err) {
-      lastError = err;
-    }
-  }
-  throw new Error(`Mock not found for ${filename}. Tried: ${candidatePaths.join(", ")}. Last error: ${lastError}`);
-}
+// Ce module utilise désormais uniquement l'API backend (localhost:3000).
+// Les mocks locaux ont été supprimés du projet.
 
 // Get Name function for title
 export async function GetUserName(id) {
-  if (USE_MOCK) {
-    const data = await fetchMock(id, "user");
-    return data?.data?.userInfos?.firstName ?? null;
-  }
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
   return data?.data?.userInfos?.firstName ?? null;
@@ -49,9 +10,6 @@ export async function GetUserName(id) {
 
 // Get User Activity function for BarChart
 export async function GetUserActivity(id) {
-  if (USE_MOCK) {
-    return await fetchMock(id, "activity");
-  }
   const response = await fetch(`http://localhost:3000/user/${id}/activity`);
   const data = await response.json();
   return data;
@@ -59,13 +17,8 @@ export async function GetUserActivity(id) {
 
 // Get User Activity formatted for BarChart
 export async function GetUserActivityFormatted(id) {
-  let data;
-  if (USE_MOCK) {
-    data = await fetchMock(id, "activity");
-  } else {
-    const response = await fetch(`http://localhost:3000/user/${id}/activity`);
-    data = await response.json();
-  }
+  const response = await fetch(`http://localhost:3000/user/${id}/activity`);
+  const data = await response.json();
   // Possible shapes: { data: { sessions: [...] } } or { data: [...] } or { sessions: [...] }
   const payload = data?.data ?? data;
   const sessions = payload?.sessions ?? payload ?? [];
@@ -86,9 +39,6 @@ export async function GetUserActivityFormatted(id) {
 
 // Get User Average Sessions function for LineChart
 export async function GetUserAverageSessions(id) {
-  if (USE_MOCK) {
-    return await fetchMock(id, "averageSessions");
-  }
   const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
   const data = await response.json();
   return data;
@@ -96,13 +46,8 @@ export async function GetUserAverageSessions(id) {
 
 // Get User Average Sessions formatted for LineChart
 export async function GetUserAverageSessionsFormatted(id) {
-  let data;
-  if (USE_MOCK) {
-    data = await fetchMock(id, "averageSessions");
-  } else {
-    const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
-    data = await response.json();
-  }
+  const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
+  const data = await response.json();
   // API may return { data: { sessions: [...] } } or { data: [...] }
   const payload = data?.data ?? data;
   const rawSessions = payload?.sessions ?? payload ?? [];
@@ -123,9 +68,6 @@ export async function GetUserAverageSessionsFormatted(id) {
 
 // Get User Performance function for RadarChart
 export async function GetUserPerformance(id) {
-  if (USE_MOCK) {
-    return await fetchMock(id, "performance");
-  }
   const response = await fetch(`http://localhost:3000/user/${id}/performance`);
   const data = await response.json();
   return data;
@@ -133,13 +75,8 @@ export async function GetUserPerformance(id) {
 
 // Get User Performance formatted for RadarChart
 export async function GetUserPerformanceFormatted(id) {
-  let data;
-  if (USE_MOCK) {
-    data = await fetchMock(id, "performance");
-  } else {
-    const response = await fetch(`http://localhost:3000/user/${id}/performance`);
-    data = await response.json();
-  }
+  const response = await fetch(`http://localhost:3000/user/${id}/performance`);
+  const data = await response.json();
   // API shape may be:
   // { data: { userId: 18, kind: {1: 'cardio', ...}, data: [{value: 200, kind:1}, ...] } }
   const payload = data?.data ?? data;
@@ -156,22 +93,14 @@ export async function GetUserPerformanceFormatted(id) {
 
 // Get User Score function for PieChart
 export async function GetUserScore(id) {
-  if (USE_MOCK) {
-    return await fetchMock(id, "user");
-  }
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
   return data;
 }
 
 export async function GetUserScoreFormatted(id) {
-  let data;
-  if (USE_MOCK) {
-    data = await fetchMock(id, "user");
-  } else {
-    const response = await fetch(`http://localhost:3000/user/${id}`);
-    data = await response.json();
-  }
+  const response = await fetch(`http://localhost:3000/user/${id}`);
+  const data = await response.json();
   console.log("Données complètes de l'API :", data);
   const score = data?.data?.score ?? data?.data?.todayScore ?? 0;
   console.log("Score extrait :", score);
@@ -181,22 +110,14 @@ export async function GetUserScoreFormatted(id) {
 
 // Get User Nutrition function for AlimentationBoard
 export async function GetUserNutrition(id) {
-  if (USE_MOCK) {
-    return await fetchMock(id, "user");
-  }
   const response = await fetch(`http://localhost:3000/user/${id}`);
   const data = await response.json();
   return data;
 }
 
 export async function GetUserNutritionFormatted(id) {
-  let data;
-  if (USE_MOCK) {
-    data = await fetchMock(id, "user");
-  } else {
-    const response = await fetch(`http://localhost:3000/user/${id}`);
-    data = await response.json();
-  }
+  const response = await fetch(`http://localhost:3000/user/${id}`);
+  const data = await response.json();
   const keyData = data?.data?.keyData ?? {};
   return [
     { type: "Calories", value: keyData.calorieCount ?? 0, unit: "kCal" },

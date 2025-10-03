@@ -10,17 +10,3 @@
   align-items: center;
   justify-content: center;
 }
-
-.graphs-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 4px;
-}
-
-.line-radar-pie-container {
-  display: flex;
-  gap: 5px;
-  flex-direction: row;
-  margin: 0 10px;
-}
