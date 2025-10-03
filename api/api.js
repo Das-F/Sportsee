@@ -1,6 +1,3 @@
-// Ce module utilise désormais uniquement l'API backend (localhost:3000).
-// Les mocks locaux ont été supprimés du projet.
-
 // Get Name function for title
 export async function GetUserName(id) {
   const response = await fetch(`http://localhost:3000/user/${id}`);
