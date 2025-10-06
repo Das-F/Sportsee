@@ -55,3 +55,17 @@ h2 {
   border-radius: 50%;
   background-color: #e60000;
 }
+
+.bar-chart-tooltip {
+  background: #e60000;
+  color: #ffffff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bar-chart-tooltip p {
+  font-size: 16px;
+}
