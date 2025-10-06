@@ -35,6 +35,7 @@ const CustomTooltip = ({ active, payload }) => {
 const LineChartComponent = ({ data, userId }) => {
   const [chartData, setChartData] = useState(Array.isArray(data) && data.length ? data : sampleData);
   const [loading, setLoading] = useState(false);
+  const [isHovering, setIsHovering] = useState(false); // 👈 nouvel état
 
   useEffect(() => {
     let mounted = true;
@@ -67,11 +68,12 @@ const LineChartComponent = ({ data, userId }) => {
     <div className="line-chart-container">
       <div className="line-chart-responsive-container">
         <ResponsiveContainer width="100%" height="100%">
-          <LineChart data={chartData}>
-            <Legend verticalAlign="top" align="left" content={<CustomLegend />} />
+          <LineChart data={chartData} onMouseMove={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
+            {isHovering && <Legend verticalAlign="top" align="left" content={<CustomLegend />} />}
+
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
             <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
-            <YAxis hide={true} />
+            <YAxis hide />
             <Tooltip content={<CustomTooltip />} cursor={false} />
             <Line type="monotone" dataKey="sessionLength" stroke="#ffffff" strokeWidth={2} dot={false} />
           </LineChart>
