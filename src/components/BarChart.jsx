@@ -2,8 +2,6 @@ import "./BarChart.css";
 import { useEffect, useState } from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-// NOTE: remove local static data - component uses only API or passed prop data
-
 const CustomLegend = () => (
   <div className="bar-chart-legend">
     <h2 className="bar-chart-title">Activité quotidienne</h2>
@@ -94,7 +92,6 @@ const BarChartComponent = ({ data: propData, userId }) => {
           <YAxis yAxisId="left" hide />
           <YAxis yAxisId="right" orientation="right" tickLine={false} axisLine={false} domain={[minKg, maxKg]} ticks={ticks} tickFormatter={(value) => `${value} kg`} />
           <Tooltip />
-
           <Bar dataKey="calories" fill="#E60000" barSize={8} radius={[10, 10, 0, 0]} yAxisId="left" />
           <Bar dataKey="kilogram" fill="#282D30" barSize={8} radius={[10, 10, 0, 0]} yAxisId="right" />
         </BarChart>
