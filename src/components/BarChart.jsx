@@ -33,7 +33,7 @@ const CustomTooltip = ({ active, payload }) => {
 const BarChartComponent = ({ data: propData, userId }) => {
   const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [hoverRect, setHoverRect] = useState(null); // 👈 coordonnées dynamiques du fond gris
+  const [hoverRect, setHoverRect] = useState(null);
 
   useEffect(() => {
     let mounted = true;
