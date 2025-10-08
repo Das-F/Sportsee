@@ -3,16 +3,6 @@ import { useEffect, useState } from "react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { GetUserAverageSessionsFormatted } from "../../api/api";
 
-const sampleData = [
-  { name: "L", sessionLength: 30 },
-  { name: "M", sessionLength: 40 },
-  { name: "M", sessionLength: 50 },
-  { name: "J", sessionLength: 30 },
-  { name: "V", sessionLength: 30 },
-  { name: "S", sessionLength: 50 },
-  { name: "D", sessionLength: 50 },
-];
-
 const CustomLegend = () => (
   <div className="custom-legend-linechart">
     <h2>
@@ -33,9 +23,9 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const LineChartComponent = ({ data, userId }) => {
-  const [chartData, setChartData] = useState(Array.isArray(data) && data.length ? data : sampleData);
+  const [chartData, setChartData] = useState(Array.isArray(data) && data.length ? data : []);
   const [loading, setLoading] = useState(false);
-  const [isHovering, setIsHovering] = useState(false); // 👈 nouvel état
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -48,11 +38,11 @@ const LineChartComponent = ({ data, userId }) => {
     GetUserAverageSessionsFormatted(userId)
       .then((d) => {
         if (!mounted) return;
-        setChartData(Array.isArray(d) && d.length ? d : sampleData);
+        setChartData(Array.isArray(d) && d.length ? d : []);
       })
       .catch((err) => {
         console.error("LineChart: erreur GetUserAverageSessionsFormatted:", err);
-        setChartData(sampleData);
+        setChartData([]);
       })
       .finally(() => setLoading(false));
 
@@ -61,8 +51,8 @@ const LineChartComponent = ({ data, userId }) => {
     };
   }, [data, userId]);
 
-  if (!userId && (!data || !data.length)) return <p>Utilisateur non spécifié</p>;
   if (loading) return <p>Chargement...</p>;
+  if ((!userId && (!data || !data.length)) || (Array.isArray(chartData) && chartData.length === 0)) return <p>Aucune donnée disponible</p>;
 
   return (
     <div className="line-chart-container">
