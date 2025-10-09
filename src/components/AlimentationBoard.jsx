@@ -14,7 +14,6 @@ function AlimentationBoard({ userId }) {
 
     GetUserNutritionFormatted(userId)
       .then((formatted) => {
-        console.log("AlimentationBoard: Données formatées:", formatted);
         if (!Array.isArray(formatted)) {
           console.error("AlimentationBoard: format de données inattendu", formatted);
           setNutrition([]);
