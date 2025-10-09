@@ -29,7 +29,7 @@ function Login() {
 
           <form className="field" onSubmit={handleSubmit}>
             <label htmlFor="userId">Identifiant utilisateur</label>
-            <input id="userId" type="text" placeholder="Ex : 18" value={userId} onChange={(e) => setUserId(e.target.value)} />
+            <input id="userId" type="text" placeholder="Ex : 12, 18 ou 20" value={userId} onChange={(e) => setUserId(e.target.value)} />
             <button type="submit">Accéder</button>
             <div className="note">Vous pouvez entrer 12 ou 18 (données d'exemple).</div>
           </form>
