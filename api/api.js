@@ -1,26 +1,40 @@
-// Get Name function for title
+// sportsee-front/api/api.js
+import { USE_MOCK } from "./config";
+
+// 🔹 Import des JSON mockés
+import mockUserInfo from "/public/assets/mocksdatas/20-user-information.json";
+import mockUserActivity from "/public/assets/mocksdatas/20-user-activity.json";
+import mockUserAverageSession from "/public/assets/mocksdatas/20-user-average-session.json";
+import mockUserPerformance from "/public/assets/mocksdatas/20-user-performance.json";
+
+const BASE_URL = "http://localhost:3000";
+
+// ---------------------------------------------------------------------------
+// 🔸 USER NAME
+// ---------------------------------------------------------------------------
 export async function GetUserName(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
+  if (USE_MOCK) {
+    return mockUserInfo.data.userInfos.firstName;
+  }
+  const response = await fetch(`${BASE_URL}/user/${id}`);
   const data = await response.json();
   return data?.data?.userInfos?.firstName ?? null;
 }
 
-// Get User Activity function for BarChart
+// ---------------------------------------------------------------------------
+// 🔸 USER ACTIVITY
+// ---------------------------------------------------------------------------
 export async function GetUserActivity(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/activity`);
+  if (USE_MOCK) return mockUserActivity;
+  const response = await fetch(`${BASE_URL}/user/${id}/activity`);
   const data = await response.json();
   return data;
 }
 
-// Get User Activity formatted for BarChart
 export async function GetUserActivityFormatted(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/activity`);
-  const data = await response.json();
-  // Possible shapes: { data: { sessions: [...] } } or { data: [...] } or { sessions: [...] }
+  const data = USE_MOCK ? mockUserActivity : await (await fetch(`${BASE_URL}/user/${id}/activity`)).json();
   const payload = data?.data ?? data;
   const sessions = payload?.sessions ?? payload ?? [];
-
-  // Ensure sessions is an array of { day, kilogram, calories }
   const normalized = Array.isArray(sessions)
     ? sessions.map((s) => ({
         day: s.day ?? s.date ?? s.label ?? "",
@@ -28,27 +42,24 @@ export async function GetUserActivityFormatted(id) {
         calories: s.calories ?? s.calorie ?? s.kcal ?? null,
       }))
     : [];
-
   const result = { userId: payload?.userId ?? payload?.id ?? id, sessions: normalized };
   if (typeof window !== "undefined") console.debug("[api] GetUserActivityFormatted ->", result);
   return result;
 }
 
-// Get User Average Sessions function for LineChart
+// ---------------------------------------------------------------------------
+// 🔸 USER AVERAGE SESSIONS
+// ---------------------------------------------------------------------------
 export async function GetUserAverageSessions(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
-  const data = await response.json();
-  return data;
+  if (USE_MOCK) return mockUserAverageSession;
+  const response = await fetch(`${BASE_URL}/user/${id}/average-sessions`);
+  return await response.json();
 }
 
-// Get User Average Sessions formatted for LineChart
 export async function GetUserAverageSessionsFormatted(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/average-sessions`);
-  const data = await response.json();
-  // API may return { data: { sessions: [...] } } or { data: [...] }
+  const data = USE_MOCK ? mockUserAverageSession : await (await fetch(`${BASE_URL}/user/${id}/average-sessions`)).json();
   const payload = data?.data ?? data;
   const rawSessions = payload?.sessions ?? payload ?? [];
-
   const dayMap = [null, "L", "M", "M", "J", "V", "S", "D"];
 
   const chartData = Array.isArray(rawSessions)
@@ -63,58 +74,60 @@ export async function GetUserAverageSessionsFormatted(id) {
   return chartData;
 }
 
-// Get User Performance function for RadarChart
+// ---------------------------------------------------------------------------
+// 🔸 USER PERFORMANCE
+// ---------------------------------------------------------------------------
 export async function GetUserPerformance(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/performance`);
-  const data = await response.json();
-  return data;
+  if (USE_MOCK) return mockUserPerformance;
+  const response = await fetch(`${BASE_URL}/user/${id}/performance`);
+  return await response.json();
 }
 
-// Get User Performance formatted for RadarChart
 export async function GetUserPerformanceFormatted(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}/performance`);
-  const data = await response.json();
-  // API shape may be:
-  // { data: { userId: 18, kind: {1: 'cardio', ...}, data: [{value: 200, kind:1}, ...] } }
+  const data = USE_MOCK ? mockUserPerformance : await (await fetch(`${BASE_URL}/user/${id}/performance`)).json();
   const payload = data?.data ?? data;
   const kindMap = payload?.kind ?? {};
   const rawData = payload?.data ?? [];
 
-  // Map to [{ kind: 'cardio', value: 200 }, ...]
-  const chartData = Array.isArray(rawData) ? rawData.map((d) => ({ kind: kindMap?.[d.kind] ?? d.kind, value: d.value })) : [];
+  const chartData = Array.isArray(rawData)
+    ? rawData.map((d) => ({
+        kind: kindMap?.[d.kind] ?? d.kind,
+        value: d.value,
+      }))
+    : [];
 
   const result = { userId: payload?.userId, kind: kindMap, data: chartData };
   if (typeof window !== "undefined") console.debug("[api] GetUserPerformanceFormatted ->", result);
   return result;
 }
 
-// Get User Score function for PieChart
+// ---------------------------------------------------------------------------
+// 🔸 USER SCORE
+// ---------------------------------------------------------------------------
 export async function GetUserScore(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
-  return data;
+  if (USE_MOCK) return mockUserInfo;
+  const response = await fetch(`${BASE_URL}/user/${id}`);
+  return await response.json();
 }
 
 export async function GetUserScoreFormatted(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
-  console.log("Données complètes de l'API :", data);
+  const data = USE_MOCK ? mockUserInfo : await (await fetch(`${BASE_URL}/user/${id}`)).json();
   const score = data?.data?.score ?? data?.data?.todayScore ?? 0;
-  console.log("Score extrait :", score);
   if (typeof window !== "undefined") console.debug("[api] GetUserScoreFormatted ->", score);
   return score;
 }
 
-// Get User Nutrition function for AlimentationBoard
+// ---------------------------------------------------------------------------
+// 🔸 USER NUTRITION
+// ---------------------------------------------------------------------------
 export async function GetUserNutrition(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
-  return data;
+  if (USE_MOCK) return mockUserInfo;
+  const response = await fetch(`${BASE_URL}/user/${id}`);
+  return await response.json();
 }
 
 export async function GetUserNutritionFormatted(id) {
-  const response = await fetch(`http://localhost:3000/user/${id}`);
-  const data = await response.json();
+  const data = USE_MOCK ? mockUserInfo : await (await fetch(`${BASE_URL}/user/${id}`)).json();
   const keyData = data?.data?.keyData ?? {};
   return [
     { type: "Calories", value: keyData.calorieCount ?? 0, unit: "kCal" },
