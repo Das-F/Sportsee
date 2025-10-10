@@ -12,7 +12,7 @@ function Login() {
       alert("Veuillez entrer un identifiant.");
       return;
     }
-    // Redirige vers /user/:id
+
     navigate(`/user/${encodeURIComponent(userId.trim())}`);
   }
 

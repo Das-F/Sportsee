@@ -1,6 +1,4 @@
-// ===========================================================================
-// 🧩 MODELES DE DONNÉES
-// ===========================================================================
+// Models classes to structure user datas.
 
 export class UserActivity {
   constructor(data) {
