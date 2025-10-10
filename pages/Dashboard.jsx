@@ -55,30 +55,6 @@ function Dashboard() {
           </div>
         </div>
       </div>
-
-      {/* <div className="dashboard">
-        <div className="personnal-space">
-          <Layout />
-          <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={id} firstName={firstName} />
-        </div>
-
-        <div className="graphs-container">
-          <div className="left-graphs">
-            <div className="bar-container">
-              <BarChartComponent userId={id} />
-            </div>
-            <div className="line-radar-pie-container">
-              <LineChartComponent userId={id} />
-              <RadarChartComponent userId={id} />
-              <PieChartComponent userId={id} />
-            </div>
-          </div>
-
-          <div className="alimentation-graph">
-            <AlimentationBoard userId={id} />
-          </div>
-        </div>
-      </div> */}
     </>
   );
 }
