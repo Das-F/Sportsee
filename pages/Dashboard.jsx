@@ -33,6 +33,30 @@ function Dashboard() {
   return (
     <>
       <div className="dashboard">
+        <Layout className="dashboard-layout" />
+
+        <div className="dashboard-content">
+          <div className="dashboard-header">
+            <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={id} firstName={firstName} />
+          </div>
+
+          <div className="graphs-container">
+            <div className="left-graphs">
+              <BarChartComponent userId={id} />
+              <div className="bottom-graphs">
+                <LineChartComponent userId={id} />
+                <RadarChartComponent userId={id} />
+                <PieChartComponent userId={id} />
+              </div>
+            </div>
+            <div className="right-graphs">
+              <AlimentationBoard userId={id} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="dashboard">
         <div className="personnal-space">
           <Layout />
           <Message text="Félicitations ! Vous avez explosé vos objectifs hier 👏" id={id} firstName={firstName} />
@@ -54,7 +78,7 @@ function Dashboard() {
             <AlimentationBoard userId={id} />
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

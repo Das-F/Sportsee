@@ -1,20 +1,13 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .dashboard {
   padding: 65px;
   position: relative;
   height: 100%;
-}
-
-.activities {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  width: 100vh;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .graphs-container {
@@ -30,19 +23,15 @@
   margin-left: 20px;
 }
 
-.line-radar-pie-container {
+.bottom-graphs {
   display: flex;
   gap: 5px;
   flex-direction: row;
   margin: 0 0 0 10px;
 }
 
-.alimentation-graph {
+.right-graph {
   display: flex;
   width: auto;
   flex-shrink: 0;
-}
-
-.bar-container {
-  width: 680px;
 }
