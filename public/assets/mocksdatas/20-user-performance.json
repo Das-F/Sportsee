@@ -2,12 +2,12 @@
   "data": {
     "userId": 20,
     "kind": {
-      "1": "cardio",
-      "2": "énergie",
-      "3": "endurance",
-      "4": "force",
-      "5": "vitesse",
-      "6": "intensité"
+      "1": "Cardio",
+      "2": "Energie",
+      "3": "Endurance",
+      "4": "Force",
+      "5": "Vitesse",
+      "6": "Intensité"
     },
     "data": [
       {
