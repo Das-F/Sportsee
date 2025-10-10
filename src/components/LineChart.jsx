@@ -59,8 +59,7 @@ const LineChartComponent = ({ data, userId }) => {
       <div className="line-chart-responsive-container">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={chartData} onMouseMove={() => setIsHovering(true)} onMouseLeave={() => setIsHovering(false)}>
-            {isHovering && <Legend verticalAlign="top" align="left" content={<CustomLegend />} />}
-
+            <Legend verticalAlign="top" align="left" content={<CustomLegend />} />
             <CartesianGrid strokeDasharray="3 3" vertical={false} horizontal={false} />
             <XAxis dataKey="name" stroke="#ffffff" tickLine={false} axisLine={false} padding={{ left: 10, right: 10 }} />
             <YAxis hide />
