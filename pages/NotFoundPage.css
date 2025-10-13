@@ -1,0 +1,49 @@
+.topbar {
+  background: #000;
+  color: #fff;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  position: fixed; /* ✅ inutile de le doubler avec "absolute" */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+
+.topbar .logo {
+  height: 50px;
+  width: auto;
+}
+
+.not-found {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 50vh;
+  text-align: center;
+}
+
+.not-found h1 {
+  font-size: 28px;
+  color: black;
+  margin: 80px 0 20px;
+}
+
+.return-home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 18px 0;
+  color: black;
+  font-size: 14px;
+  text-decoration: underline;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.return-home:hover {
+  color: #555; /* ✅ petit effet visuel au survol */
+}

@@ -8,6 +8,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/user/:id" element={<Dashboard />} />
+      <Route path="/404" element={<NotFoundPage />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );

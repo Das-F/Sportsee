@@ -5,6 +5,9 @@ import { Link } from "react-router-dom";
 function NotFoundPage() {
   return (
     <>
+      <div className="topbar">
+        <img className="logo" src="/assets/Logo.svg" alt="Sportsee logo" />
+      </div>
       <div className="not-found">
         <ErrorMessage className="error-message" alt="Error 404" fillColor="#ff0101" />
         <h1>Il n'existe pas de donnée pour cet utilisateur.</h1>

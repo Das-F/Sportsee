@@ -1,8 +1,6 @@
-import "../components/ErrorMessage.css";
-
-function ErrorMessage({ message }, { link }) {
+function ErrorMessage({ message, link }) {
   return (
-    <div className="error-message">
+    <div className="error-page">
       <h1 className="error-text">{message}</h1>
       <p className="error-subtext">{link}</p>
     </div>

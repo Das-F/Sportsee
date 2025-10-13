@@ -1,6 +1,6 @@
 import "../pages/Dashboard.css";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GetUserName } from "../api/api.js";
 import Layout from "../src/components/Layout.jsx";
 import BarChartComponent from "../src/components/BarChart.jsx";
@@ -12,6 +12,7 @@ import Message from "../src/components/Message.jsx";
 
 function Dashboard() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState(null);
 
   useEffect(() => {
@@ -21,15 +22,21 @@ function Dashboard() {
 
     GetUserName(id)
       .then((name) => {
+        if (!name) {
+          navigate("/404", { replace: true });
+          return;
+        }
         if (mounted) setFirstName(name);
       })
-      .catch((err) => console.error("Erreur récupération prénom :", err));
+      .catch((err) => {
+        console.error("Erreur récupération prénom :", err);
+        navigate("/404", { replace: true });
+      });
 
     return () => {
       mounted = false;
     };
-  }, [id]);
-
+  }, [id, navigate]);
   return (
     <>
       <div className="dashboard">
