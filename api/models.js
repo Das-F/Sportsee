@@ -46,13 +46,19 @@ export class UserAverageSessions {
 
 export class UserPerformance {
   constructor(data) {
+    const kind = {
+      1: "Cardio",
+      2: "Énergie",
+      3: "Endurance",
+      4: "Force",
+      5: "Vitesse",
+      6: "Intensité",
+    };
     const payload = data?.data ?? data;
-    const kindMap = payload?.kind ?? {};
     const rawData = payload?.data ?? [];
     this.userId = payload?.userId ?? null;
-    this.kind = kindMap;
     this.data = rawData.map((d) => ({
-      kind: kindMap?.[d.kind] ?? d.kind,
+      kind: kind?.[d.kind] ?? d.kind,
       value: d.value,
     }));
   }
