@@ -116,9 +116,9 @@ const BarChartComponent = ({ data: propData, userId }) => {
           <Tooltip content={<CustomTooltip />} cursor={false} />
 
           {hoverRect && <rect x={hoverRect.x} y={0} width={hoverRect.width} height="100%" fill="rgba(196,196,196,0.3)" pointerEvents="none" />}
+          <Bar dataKey="kilogram" fill="#282D30" barSize={8} radius={[10, 10, 0, 0]} yAxisId="right" />
 
           <Bar dataKey="calories" fill="#E60000" barSize={8} radius={[10, 10, 0, 0]} yAxisId="left" />
-          <Bar dataKey="kilogram" fill="#282D30" barSize={8} radius={[10, 10, 0, 0]} yAxisId="right" />
         </BarChart>
       </ResponsiveContainer>
     </div>
